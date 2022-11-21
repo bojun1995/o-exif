@@ -65,8 +65,8 @@ module.exports = (appInfo) => {
 
   /* ee框架日志 */
   config.logger = {
-    appLogName: `ee-${dayjs().format('YYYY-MM-DD')}.log`, 
-    errorLogName: `ee-error-${dayjs().format('YYYY-MM-DD')}.log` 
+    appLogName: `ee-${dayjs().format('YYYY-MM-DD')}.log`,
+    errorLogName: `ee-error-${dayjs().format('YYYY-MM-DD')}.log`
   }
 
   /* 远程web地址 (可选) */
@@ -94,7 +94,7 @@ module.exports = (appInfo) => {
   config.httpServer = {
     enable: false, // 是否启用
     https: {
-      enable: false, 
+      enable: false,
       key: '/public/ssl/localhost+1.key', // key文件
       cert: '/public/ssl/localhost+1.pem' // cert文件
     },
@@ -109,7 +109,7 @@ module.exports = (appInfo) => {
       }
     },
     filterRequest: {
-      uris:  [
+      uris: [
         'favicon.ico'
       ],
       returnData: '' // 任何数据类型
@@ -120,7 +120,7 @@ module.exports = (appInfo) => {
   config.mainServer = {
     host: '127.0.0.1',
     port: 7072, // 默认端口（如果端口被使用，则随机获取一个）
-  }; 
+  };
 
   /**
    * 硬件加速
