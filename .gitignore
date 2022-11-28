@@ -1,5 +1,4 @@
 node_modules
-public/
 out/
 logs/
 run/
@@ -8,3 +7,4 @@ package-lock.json
 data/
 .vscode/launch.json
 public/electron/
+yarn.lock

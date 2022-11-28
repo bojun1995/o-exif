@@ -5,16 +5,17 @@ const path = require('path');
 
 /**
  * 默认配置
- * @see https://www.yuque.com/u34495/mivcfg/guk1x0
+ * https://www.yuque.com/u34495/mivcfg/guk1x0
  */
 module.exports = (appInfo) => {
   /**
    * built-in config
-   * @type {Ee.EeAppConfig}
    **/
   const config = {};
 
-  /* 应用模式配置 */
+  /**
+   * 应用模式配置
+   */
   config.developmentMode = {
     default: 'vue',
     mode: {
@@ -24,7 +25,7 @@ module.exports = (appInfo) => {
       },
       react: {
         hostname: 'localhost',
-        port: 3000
+        port: 7777
       },
       html: {
         hostname: 'localhost',
@@ -33,7 +34,9 @@ module.exports = (appInfo) => {
     }
   };
 
-  /* 开发者工具 */
+  /**
+   * 开发者工具
+   */
   config.openDevTools = false;
 
   /**
@@ -47,35 +50,41 @@ module.exports = (appInfo) => {
    * 主窗口
    */
   config.windowsOption = {
+    title: 'EE框架',
     width: 980,
     height: 650,
     minWidth: 800,
     minHeight: 650,
     webPreferences: {
-      //webSecurity: false,
-      contextIsolation: false, // false->可在渲染进程中使用electronApi，true->需要bridge.js(contextBridge)
+      //webSecurity: false, // 跨域问题 -> 打开注释
+      contextIsolation: false, // false -> 可在渲染进程中使用electron的api，true->需要bridge.js(contextBridge)
       nodeIntegration: true,
       //preload: path.join(appInfo.baseDir, 'preload', 'bridge.js'),
     },
     frame: true,
     show: true,
-    //backgroundColor: '#000000'
-    //titleBarStyle: 'hidden'
+    icon: path.join(appInfo.home, 'public', 'images', 'logo-32.png'),
   };
 
-  /* ee框架日志 */
+  /**
+   * ee框架日志
+   */  
   config.logger = {
-    appLogName: `ee-${dayjs().format('YYYY-MM-DD')}.log`,
-    errorLogName: `ee-error-${dayjs().format('YYYY-MM-DD')}.log`
+    appLogName: `ee-${dayjs().format('YYYY-MM-DD')}.log`, 
+    errorLogName: `ee-error-${dayjs().format('YYYY-MM-DD')}.log` 
   }
 
-  /* 远程web地址 (可选) */
+  /**
+   * 远程web地址 (可选)
+   */    
   config.remoteUrl = {
     enable: false, // 是否启用
     url: 'https://discuz.chat/' // Any web url
   };
 
-  /* 内置socket服务 */
+  /**
+   * 内置socket服务
+   */   
   config.socketServer = {
     enable: false, // 是否启用
     port: 7070, // 默认端口（如果端口被使用，则随机获取一个）
@@ -90,11 +99,13 @@ module.exports = (appInfo) => {
     }
   };
 
-  /* 内置http服务 */
+  /**
+   * 内置http服务
+   */     
   config.httpServer = {
     enable: false, // 是否启用
     https: {
-      enable: false,
+      enable: false, 
       key: '/public/ssl/localhost+1.key', // key文件
       cert: '/public/ssl/localhost+1.pem' // cert文件
     },
@@ -109,27 +120,31 @@ module.exports = (appInfo) => {
       }
     },
     filterRequest: {
-      uris: [
+      uris:  [
         'favicon.ico'
       ],
       returnData: '' // 任何数据类型
     }
   };
 
-  /* 主进程 */
+  /**
+   * 主进程
+   */     
   config.mainServer = {
     host: '127.0.0.1',
     port: 7072, // 默认端口（如果端口被使用，则随机获取一个）
-  };
+  }; 
 
   /**
    * 硬件加速
    */
   config.hardGpu = {
-    enable: true
+    enable: false
   };
 
-  /* 应用自动升级 (可选) */
+  /**
+   * 应用自动升级 (可选)
+   */   
   config.autoUpdate = {
     windows: false, // windows平台
     macOS: false, // macOs 需要签名验证
@@ -141,17 +156,35 @@ module.exports = (appInfo) => {
     force: false, // 强制更新（运行软件时，检查新版本并后台下载安装）
   };
 
-  /* 被浏览器唤醒 (可选) */
+  /**
+   * 被浏览器唤醒 (可选)
+   */     
   config.awakeProtocol = {
     protocol: 'ee', // 自定义协议名（默认你的应用名称-英文）
     args: []
   };
 
-  /* 托盘 (可选)  */
+  /**
+   * 托盘 (可选)
+   */    
   config.tray = {
-    title: 'o-exif', // 托盘显示标题
+    title: 'EE程序', // 托盘显示标题
     icon: '/public/images/tray_logo.png' // 托盘图标
-  }
+  };
+
+  /**
+   * 插件功能
+   * window 官方内置插件
+   * example demo插件
+   */
+  config.addons = {
+    window: {
+      enable: true,
+    },
+    example: {
+      enable: true, 
+    }
+  };
 
   return {
     ...config
