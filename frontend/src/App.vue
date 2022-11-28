@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 </script>
 <script>
 export default {
@@ -11,4 +10,4 @@ export default {
 }
 </script>
 
-<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped></style>
+<style scoped></style>

@@ -1,7 +1,7 @@
 {
-  "name": "ee",
-  "version": "2.2.1",
-  "description": "A fast, desktop software development framework",
+  "name": "o-exif",
+  "version": "0.0.1",
+  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron . ",
@@ -28,9 +28,9 @@
     "re-sqlite": "electron-rebuild -f -w better-sqlite3"
   },
   "build": {
-    "productName": "ee",
-    "appId": "com.electron.ee",
-    "copyright": "wallace5303",
+    "productName": "e-exif",
+    "appId": "com.bojun1995.o-exif",
+    "copyright": "bojun1995",
     "directories": {
       "output": "out"
     },
@@ -40,8 +40,7 @@
       "!frontend/",
       "!run/",
       "!logs/",
-      "!data/",
-      "!electron/"
+      "!data/"
     ],
     "extraResources": {
       "from": "./build/extraResources/",
@@ -59,14 +58,8 @@
       "installerHeaderIcon": "./build/icons/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "EE框架"
+      "shortcutName": "e-exif"
     },
-    "publish": [
-      {
-        "provider": "generic",
-        "url": "https://github.com/wallace5303/electron-egg"
-      }
-    ],
     "mac": {
       "icon": "./build/icons/icon.icns",
       "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
@@ -93,7 +86,7 @@
       "category": "Utility"
     }
   },
-  "repository": "https://github.com/wallace5303/ee.git",
+  "repository": "https://github.com/bojun1995/o-exif",
   "keywords": [
     "Electron"
   ],

@@ -126,7 +126,7 @@ module.exports = (appInfo) => {
    * 硬件加速
    */
   config.hardGpu = {
-    enable: false
+    enable: true
   };
 
   /* 应用自动升级 (可选) */
@@ -149,7 +149,7 @@ module.exports = (appInfo) => {
 
   /* 托盘 (可选)  */
   config.tray = {
-    title: 'EE程序', // 托盘显示标题
+    title: 'o-exif', // 托盘显示标题
     icon: '/public/images/tray_logo.png' // 托盘图标
   }
 
