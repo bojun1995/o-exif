@@ -1,5 +1,5 @@
 <template>
-  <div>Home</div>
+  <div class="test">Home</div>
 </template>
 
 <script setup>
@@ -10,4 +10,8 @@ export default {
 }
 </script>
 
-<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped></style>
+<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
+.test  {
+  color: $g_color;
+}
+</style>
