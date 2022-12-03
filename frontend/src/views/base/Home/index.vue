@@ -2,8 +2,7 @@
   <div class="test">Home</div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 <script>
 export default {
   name: 'Home',
@@ -11,7 +10,7 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
-.test  {
+.test {
   color: $g_color;
 }
 </style>
