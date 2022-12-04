@@ -44,7 +44,8 @@ module.exports = (appInfo) => {
    * boolean | string
    * true, false, 'dev-show'(dev环境显示，prod环境隐藏)
    */
-  config.openAppMenu = 'dev-show';
+  // config.openAppMenu = 'dev-show';
+  config.openAppMenu = false;
 
   /**
    * 主窗口
@@ -61,7 +62,7 @@ module.exports = (appInfo) => {
       nodeIntegration: true,
       //preload: path.join(appInfo.baseDir, 'preload', 'bridge.js'),
     },
-    frame: true,
+    frame: false,
     show: true,
     icon: path.join(appInfo.home, 'public', 'images', 'logo-32.png'),
   };
@@ -70,8 +71,8 @@ module.exports = (appInfo) => {
    * ee框架日志
    */
   config.logger = {
-    appLogName: `ee-${dayjs().format('YYYY-MM-DD')}.log`,
-    errorLogName: `ee-error-${dayjs().format('YYYY-MM-DD')}.log`
+    appLogName: `o-exif_${dayjs().format('YYYY-MM-DD')}.log`,
+    errorLogName: `o-exif_error-${dayjs().format('YYYY-MM-DD')}.log`
   }
 
   /**
@@ -160,7 +161,7 @@ module.exports = (appInfo) => {
    * 被浏览器唤醒 (可选)
    */
   config.awakeProtocol = {
-    protocol: 'ee', // 自定义协议名（默认你的应用名称-英文）
+    protocol: 'o-exif', // 自定义协议名（默认你的应用名称-英文）
     args: []
   };
 
