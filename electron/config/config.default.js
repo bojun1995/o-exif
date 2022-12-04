@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const dayjs = require('dayjs');
-const path = require('path');
+const dayjs = require('dayjs')
+const path = require('path')
 
 /**
  * 默认配置
@@ -11,7 +11,7 @@ module.exports = (appInfo) => {
   /**
    * built-in config
    **/
-  const config = {};
+  const config = {}
 
   /**
    * 应用模式配置
@@ -21,23 +21,23 @@ module.exports = (appInfo) => {
     mode: {
       vue: {
         hostname: 'localhost',
-        port: 7777
+        port: 7777,
       },
       react: {
         hostname: 'localhost',
-        port: 7777
+        port: 7777,
       },
       html: {
         hostname: 'localhost',
-        indexPage: 'index.html'
+        indexPage: 'index.html',
       },
-    }
-  };
+    },
+  }
 
   /**
    * 开发者工具
    */
-  config.openDevTools = false;
+  config.openDevTools = false
 
   /**
    * 应用程序顶部菜单
@@ -45,7 +45,7 @@ module.exports = (appInfo) => {
    * true, false, 'dev-show'(dev环境显示，prod环境隐藏)
    */
   // config.openAppMenu = 'dev-show';
-  config.openAppMenu = false;
+  config.openAppMenu = false
 
   /**
    * 主窗口
@@ -65,14 +65,14 @@ module.exports = (appInfo) => {
     frame: false,
     show: true,
     icon: path.join(appInfo.home, 'public', 'images', 'logo-32.png'),
-  };
+  }
 
   /**
    * ee框架日志
    */
   config.logger = {
     appLogName: `o-exif_${dayjs().format('YYYY-MM-DD')}.log`,
-    errorLogName: `o-exif_error-${dayjs().format('YYYY-MM-DD')}.log`
+    errorLogName: `o-exif_error-${dayjs().format('YYYY-MM-DD')}.log`,
   }
 
   /**
@@ -80,8 +80,8 @@ module.exports = (appInfo) => {
    */
   config.remoteUrl = {
     enable: false, // 是否启用
-    url: 'https://discuz.chat/' // Any web url
-  };
+    url: 'https://discuz.chat/', // Any web url
+  }
 
   /**
    * 内置socket服务
@@ -89,16 +89,16 @@ module.exports = (appInfo) => {
   config.socketServer = {
     enable: false, // 是否启用
     port: 7070, // 默认端口（如果端口被使用，则随机获取一个）
-    path: "/socket.io/", // 默认路径名称
+    path: '/socket.io/', // 默认路径名称
     connectTimeout: 45000, // 客户端连接超时时间
     pingTimeout: 30000, // 心跳检测超时时间
     pingInterval: 25000, // 心跳检测间隔
     maxHttpBufferSize: 1e8, // 每条消息的数据最大值 1M
-    transports: ["polling", "websocket"], // http轮询和websocket
+    transports: ['polling', 'websocket'], // http轮询和websocket
     cors: {
       origin: true, // http协议时，要设置允许跨域
-    }
-  };
+    },
+  }
 
   /**
    * 内置http服务
@@ -108,25 +108,23 @@ module.exports = (appInfo) => {
     https: {
       enable: false,
       key: '/public/ssl/localhost+1.key', // key文件
-      cert: '/public/ssl/localhost+1.pem' // cert文件
+      cert: '/public/ssl/localhost+1.pem', // cert文件
     },
     port: 7071, // 默认端口（如果端口被使用，则随机获取一个）
     cors: {
-      origin: "*" // 跨域
+      origin: '*', // 跨域
     },
     body: {
       multipart: true,
       formidable: {
-        keepExtensions: true
-      }
+        keepExtensions: true,
+      },
     },
     filterRequest: {
-      uris: [
-        'favicon.ico'
-      ],
-      returnData: '' // 任何数据类型
-    }
-  };
+      uris: ['favicon.ico'],
+      returnData: '', // 任何数据类型
+    },
+  }
 
   /**
    * 主进程
@@ -134,14 +132,14 @@ module.exports = (appInfo) => {
   config.mainServer = {
     host: '127.0.0.1',
     port: 7072, // 默认端口（如果端口被使用，则随机获取一个）
-  };
+  }
 
   /**
    * 硬件加速
    */
   config.hardGpu = {
-    enable: false
-  };
+    enable: false,
+  }
 
   /**
    * 应用自动升级 (可选)
@@ -152,26 +150,26 @@ module.exports = (appInfo) => {
     linux: false, // linux平台
     options: {
       provider: 'generic', // or github, s3, bintray
-      url: 'http://kodo.qiniu.com/' // resource dir, end with '/'
+      url: 'http://kodo.qiniu.com/', // resource dir, end with '/'
     },
     force: false, // 强制更新（运行软件时，检查新版本并后台下载安装）
-  };
+  }
 
   /**
    * 被浏览器唤醒 (可选)
    */
   config.awakeProtocol = {
     protocol: 'o-exif', // 自定义协议名（默认你的应用名称-英文）
-    args: []
-  };
+    args: [],
+  }
 
   /**
    * 托盘 (可选)
    */
   config.tray = {
     title: 'o-exif', // 托盘显示标题
-    icon: '/public/images/tray_logo.png' // 托盘图标
-  };
+    icon: '/public/images/tray_logo.png', // 托盘图标
+  }
 
   /**
    * 插件功能
@@ -184,10 +182,10 @@ module.exports = (appInfo) => {
     },
     example: {
       enable: true,
-    }
-  };
+    },
+  }
 
   return {
-    ...config
-  };
+    ...config,
+  }
 }

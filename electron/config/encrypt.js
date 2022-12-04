@@ -4,10 +4,8 @@
  * @param {Array} directory - directory to be encrypted
  * @param {Array} fileExt - file suffix to be encrypted, currently only .js is supported
  */
- module.exports = {
+module.exports = {
   type: 'bytecode',
-  directory: [
-    'electron'
-  ],
+  directory: ['electron'],
   fileExt: ['.js'],
-};
+}

@@ -3,21 +3,20 @@
  * @class
  */
 class ExampleAddon {
-
   constructor(app) {
-    this.app = app;
+    this.app = app
   }
 
   /**
    * hello
    *
-   * @function 
+   * @function
    * @since 1.0.0
    */
   hello() {
-    return 'hello';
+    return 'hello'
   }
 }
 
-ExampleAddon.toString = () => '[class ExampleAddon]';
-module.exports = ExampleAddon;
+ExampleAddon.toString = () => '[class ExampleAddon]'
+module.exports = ExampleAddon
