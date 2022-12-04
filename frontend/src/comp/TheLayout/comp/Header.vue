@@ -1,5 +1,12 @@
 <template>
-  <div class="header"></div>
+  <div class="header">
+    <div class="logo-box">
+      <div class="logo-svg"></div>
+      <div class="logo-text">
+        <span>o-exif</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup></script>
@@ -11,6 +18,8 @@ export default {
 
 <style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
 .header {
-  height: 50px;
+  height: 60px;
+  background-color: $header_bg;
+  -webkit-app-region: drag;
 }
 </style>

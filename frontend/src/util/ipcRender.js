@@ -1,4 +1,37 @@
-const { ipcRenderer: ipc } = (window.require && window.require('electron')) || window.electron || {}
+const { ipcRenderer } = (window.require && window.require('electron')) || window.electron || {}
+
+/**
+ * 路由定义（主进程与渲染进程通信频道定义）
+ */
+export const ipcApiRoute = {
+  test: 'controller.example.test',
+  messageShow: 'controller.example.messageShow',
+  messageShowConfirm: 'controller.example.messageShowConfirm',
+  selectFolder: 'controller.example.selectFolder',
+  openDirectory: 'controller.example.openDirectory',
+  loadViewContent: 'controller.example.loadViewContent',
+  removeViewContent: 'controller.example.removeViewContent',
+  createWindow: 'controller.example.createWindow',
+  sendNotification: 'controller.example.sendNotification',
+  initPowerMonitor: 'controller.example.initPowerMonitor',
+  getScreen: 'controller.example.getScreen',
+  openSoftware: 'controller.example.openSoftware',
+  autoLaunch: 'controller.example.autoLaunch',
+  setTheme: 'controller.example.setTheme',
+  getTheme: 'controller.example.getTheme',
+  checkForUpdater: 'controller.example.checkForUpdater',
+  downloadApp: 'controller.example.downloadApp',
+  dbOperation: 'controller.example.dbOperation',
+  uploadFile: 'controller.example.uploadFile',
+  checkHttpServer: 'controller.example.checkHttpServer',
+  doHttpRequest: 'controller.example.doHttpRequest',
+  doSocketRequest: 'controller.example.doSocketRequest',
+  ipcInvokeMsg: 'controller.example.ipcInvokeMsg',
+  ipcSendSyncMsg: 'controller.example.ipcSendSyncMsg',
+  ipcSendMsg: 'controller.example.ipcSendMsg',
+  getWCid: 'controller.example.getWCid',
+  hello: 'controller.example.hello',
+}
 
 /**
  * 发送异步消息（invoke/handle 模型）
@@ -7,7 +40,7 @@ const { ipcRenderer: ipc } = (window.require && window.require('electron')) || w
  * @returns {Promise}
  */
 export const invoke = (channel, param) => {
-  const message = ipc.invoke(channel, param)
+  const message = ipcRenderer.invoke(channel, param)
   return message
 }
 
@@ -18,6 +51,10 @@ export const invoke = (channel, param) => {
  * @returns {Any}
  */
 export const sendSync = (channel, param) => {
-  const message = ipc.sendSync(channel, param)
+  const message = ipcRenderer.sendSync(channel, param)
   return message
+}
+
+export const ipc = () => {
+  return ipcRenderer
 }

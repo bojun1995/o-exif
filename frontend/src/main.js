@@ -13,4 +13,8 @@ app.use(router)
 import { createPinia } from 'pinia'
 app.use(createPinia())
 
+// naive-ui
+import naive from 'naive-ui'
+app.use(naive)
+
 app.mount('#app')

@@ -1,18 +1,13 @@
 <template>
-  <div class="test">Home</div>
-  <div>
-    {{ appStore.themeName }}
-    {{ cp_test }}
-  </div>
+  <n-button type="primary" @click="testIpc"> Primary </n-button>
 </template>
 
 <script setup>
-import { useAppStore } from '@/store/app'
+import { invoke, ipcApiRoute } from '@/util/ipcRender'
 
-const appStore = useAppStore()
-const cp_test = computed(() => {
-  return 123
-})
+function testIpc() {
+  invoke(ipcApiRoute.getScreen, 0).then((result) => {})
+}
 </script>
 <script>
 export default {
