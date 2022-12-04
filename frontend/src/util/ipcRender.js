@@ -33,6 +33,10 @@ export const ipcApiRoute = {
   hello: 'controller.example.hello',
 }
 
+export const eleCtrlApiRoute = {
+  doOpenUrl: 'controller.eleCtrl.doOpenUrl',
+}
+
 /**
  * 发送异步消息（invoke/handle 模型）
  * @param channel

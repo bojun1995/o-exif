@@ -15,8 +15,4 @@ export default {
 }
 </script>
 
-<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
-.test {
-  color: $g_color;
-}
-</style>
+<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped></style>
