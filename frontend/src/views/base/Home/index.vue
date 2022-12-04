@@ -2,12 +2,17 @@
   <div class="test">Home</div>
   <div>
     {{ appStore.themeName }}
+    {{ cp_test }}
   </div>
 </template>
 
 <script setup>
 import { useAppStore } from '@/store/app'
+
 const appStore = useAppStore()
+const cp_test = computed(() => {
+  return 123
+})
 </script>
 <script>
 export default {
