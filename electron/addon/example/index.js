@@ -14,9 +14,9 @@ class ExampleAddon {
    * @function 
    * @since 1.0.0
    */
-  hello () {
+  hello() {
     return 'hello';
-  }  
+  }
 }
 
 ExampleAddon.toString = () => '[class ExampleAddon]';

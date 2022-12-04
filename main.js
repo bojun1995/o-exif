@@ -2,7 +2,7 @@ const Appliaction = require('ee-core').Appliaction;
 
 class Main extends Appliaction {
 
-  constructor() {
+  constructor             () {
     super();
     // this === eeApp;
   }

@@ -50,11 +50,11 @@ module.exports = (appInfo) => {
    * 主窗口
    */
   config.windowsOption = {
-    title: 'EE框架',
-    width: 980,
-    height: 650,
-    minWidth: 800,
-    minHeight: 650,
+    title: 'o-exif',
+    width: 1200,
+    height: 740,
+    minWidth: 1000,
+    minHeight: 620,
     webPreferences: {
       //webSecurity: false, // 跨域问题 -> 打开注释
       contextIsolation: false, // false -> 可在渲染进程中使用electron的api，true->需要bridge.js(contextBridge)
@@ -68,15 +68,15 @@ module.exports = (appInfo) => {
 
   /**
    * ee框架日志
-   */  
+   */
   config.logger = {
-    appLogName: `ee-${dayjs().format('YYYY-MM-DD')}.log`, 
-    errorLogName: `ee-error-${dayjs().format('YYYY-MM-DD')}.log` 
+    appLogName: `ee-${dayjs().format('YYYY-MM-DD')}.log`,
+    errorLogName: `ee-error-${dayjs().format('YYYY-MM-DD')}.log`
   }
 
   /**
    * 远程web地址 (可选)
-   */    
+   */
   config.remoteUrl = {
     enable: false, // 是否启用
     url: 'https://discuz.chat/' // Any web url
@@ -84,7 +84,7 @@ module.exports = (appInfo) => {
 
   /**
    * 内置socket服务
-   */   
+   */
   config.socketServer = {
     enable: false, // 是否启用
     port: 7070, // 默认端口（如果端口被使用，则随机获取一个）
@@ -101,11 +101,11 @@ module.exports = (appInfo) => {
 
   /**
    * 内置http服务
-   */     
+   */
   config.httpServer = {
     enable: false, // 是否启用
     https: {
-      enable: false, 
+      enable: false,
       key: '/public/ssl/localhost+1.key', // key文件
       cert: '/public/ssl/localhost+1.pem' // cert文件
     },
@@ -120,7 +120,7 @@ module.exports = (appInfo) => {
       }
     },
     filterRequest: {
-      uris:  [
+      uris: [
         'favicon.ico'
       ],
       returnData: '' // 任何数据类型
@@ -129,11 +129,11 @@ module.exports = (appInfo) => {
 
   /**
    * 主进程
-   */     
+   */
   config.mainServer = {
     host: '127.0.0.1',
     port: 7072, // 默认端口（如果端口被使用，则随机获取一个）
-  }; 
+  };
 
   /**
    * 硬件加速
@@ -144,7 +144,7 @@ module.exports = (appInfo) => {
 
   /**
    * 应用自动升级 (可选)
-   */   
+   */
   config.autoUpdate = {
     windows: false, // windows平台
     macOS: false, // macOs 需要签名验证
@@ -158,7 +158,7 @@ module.exports = (appInfo) => {
 
   /**
    * 被浏览器唤醒 (可选)
-   */     
+   */
   config.awakeProtocol = {
     protocol: 'ee', // 自定义协议名（默认你的应用名称-英文）
     args: []
@@ -166,9 +166,9 @@ module.exports = (appInfo) => {
 
   /**
    * 托盘 (可选)
-   */    
+   */
   config.tray = {
-    title: 'EE程序', // 托盘显示标题
+    title: 'o-exif', // 托盘显示标题
     icon: '/public/images/tray_logo.png' // 托盘图标
   };
 
@@ -182,7 +182,7 @@ module.exports = (appInfo) => {
       enable: true,
     },
     example: {
-      enable: true, 
+      enable: true,
     }
   };
 
