@@ -1,14 +1,8 @@
 <template>
-  <n-button type="primary" @click="testIpc"> Primary </n-button>
+  <div>Home</div>
 </template>
 
-<script setup>
-import { invoke, ipcApiRoute } from '@/util/ipcRender'
-
-function testIpc() {
-  invoke(ipcApiRoute.getScreen, 0).then((result) => {})
-}
-</script>
+<script setup></script>
 <script>
 export default {
   name: 'Home',

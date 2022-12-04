@@ -8,7 +8,20 @@
         <span>o-exif</span>
       </div>
     </div>
-    <div class="btn-box"></div>
+    <div class="btn-box">
+      <n-icon size="30" class="normal-btn" @click="onMinSizeWindowClk">
+        <i class="ri-subtract-line"></i>
+      </n-icon>
+      <n-icon size="20" class="normal-btn fullscreen-btn" @click="onMaxSizeWindowClk">
+        <i class="ri-checkbox-blank-line"></i>
+      </n-icon>
+      <n-icon size="20" class="normal-btn fullscreen-btn" @click="onUnMaxSizeWindowClk">
+        <i class="ri-checkbox-multiple-blank-line"></i>
+      </n-icon>
+      <n-icon size="30" class="close-btn" @click="onHideWindowClk">
+        <i class="ri-close-line"></i>
+      </n-icon>
+    </div>
   </div>
 </template>
 
@@ -18,6 +31,18 @@ import { eleCtrlApiRoute, sendSync } from '@/util/ipcRender'
 
 function onLogoClk() {
   sendSync(eleCtrlApiRoute.doOpenUrl, 'https://github.com/bojun1995/o-exif')
+}
+function onMinSizeWindowClk() {
+  sendSync(eleCtrlApiRoute.doMinSizeWindow)
+}
+function onMaxSizeWindowClk() {
+  sendSync(eleCtrlApiRoute.doMaxSizeWindow)
+}
+function onUnMaxSizeWindowClk() {
+  sendSync(eleCtrlApiRoute.doUnMaxSizeWindow)
+}
+function onHideWindowClk() {
+  sendSync(eleCtrlApiRoute.doHideWindow)
 }
 </script>
 <script>
@@ -56,5 +81,30 @@ export default {
 
   padding-left: 5px;
   padding-bottom: 5px;
+}
+
+.btn-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.normal-btn {
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  color: $logo_color1;
+}
+
+.close-btn {
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  color: #e05546;
+}
+
+.fullscreen-btn {
+  font-weight: 600;
+  margin-left: 5px;
+  margin-right: 4px;
 }
 </style>

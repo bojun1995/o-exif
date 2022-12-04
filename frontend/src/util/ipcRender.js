@@ -35,6 +35,10 @@ export const ipcApiRoute = {
 
 export const eleCtrlApiRoute = {
   doOpenUrl: 'controller.eleCtrl.doOpenUrl',
+  doMinSizeWindow: 'controller.eleCtrl.doMinSizeWindow',
+  doMaxSizeWindow: 'controller.eleCtrl.doMaxSizeWindow',
+  doUnMaxSizeWindow: 'controller.eleCtrl.doUnMaxSizeWindow',
+  doHideWindow: 'controller.eleCtrl.doHideWindow',
 }
 
 /**

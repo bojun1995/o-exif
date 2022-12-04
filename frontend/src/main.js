@@ -17,4 +17,7 @@ app.use(createPinia())
 import naive from 'naive-ui'
 app.use(naive)
 
+// remixicon
+import 'remixicon/fonts/remixicon.css'
+
 app.mount('#app')

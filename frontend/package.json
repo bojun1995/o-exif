@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vicons/ionicons5": "^0.12.0",
     "@vueuse/core": "^9.6.0",
     "naive-ui": "^2.34.2",
     "pinia": "^2.0.27",
+    "remixicon": "^2.5.0",
     "sass": "^1.56.1",
     "unplugin-auto-import": "^0.12.0",
     "vfonts": "^0.0.3",
