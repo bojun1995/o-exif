@@ -1,7 +1,7 @@
 const { shell, BrowserWindow } = require('electron')
 const Controller = require('ee-core').Controller
 
-class EleCtrl extends Controller {
+class ElectronCtrl extends Controller {
   /**
    * @description : 打开链接
    * @param {string} url
@@ -24,5 +24,5 @@ class EleCtrl extends Controller {
   }
 }
 
-EleCtrl.toString = () => '[class EleCtrl]'
-module.exports = EleCtrl
+ElectronCtrl.toString = () => '[class ElectronCtrl]'
+module.exports = ElectronCtrl

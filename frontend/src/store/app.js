@@ -2,9 +2,13 @@ import { defineStore } from 'pinia'
 export const useAppStore = defineStore('app', {
   state: () => {
     return {
-      themeName: '123123',
+      isMaximize: false,
     }
   },
   getters: {},
-  actions: {},
+  actions: {
+    setIsMaximize(status) {
+      this.isMaximize = status
+    },
+  },
 })

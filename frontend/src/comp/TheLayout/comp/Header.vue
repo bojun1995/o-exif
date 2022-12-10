@@ -12,10 +12,15 @@
       <n-icon size="30" class="normal-btn" @click="onMinSizeWindowClk">
         <i class="ri-subtract-line"></i>
       </n-icon>
-      <n-icon size="20" class="normal-btn fullscreen-btn" @click="onMaxSizeWindowClk">
+      <n-icon
+        v-show="appStore.isMaximize === false"
+        size="20"
+        class="normal-btn fullscreen-btn"
+        @click="onMaxSizeWindowClk"
+      >
         <i class="ri-checkbox-blank-line"></i>
       </n-icon>
-      <n-icon size="20" class="normal-btn fullscreen-btn" @click="onUnMaxSizeWindowClk">
+      <n-icon v-show="appStore.isMaximize" size="20" class="normal-btn fullscreen-btn" @click="onUnMaxSizeWindowClk">
         <i class="ri-checkbox-multiple-blank-line"></i>
       </n-icon>
       <n-icon size="30" class="close-btn" @click="onHideWindowClk">
@@ -27,22 +32,27 @@
 
 <script setup>
 import logoSVG from '@/assets/icon/logo.svg'
-import { eleCtrlApiRoute, sendSync } from '@/util/ipcRender'
+import { electronCtrlApiRoute, sendSync } from '@/util/ipcRender'
+import { useAppStore } from '@/store/app'
+
+const appStore = useAppStore()
 
 function onLogoClk() {
-  sendSync(eleCtrlApiRoute.doOpenUrl, 'https://github.com/bojun1995/o-exif')
+  sendSync(electronCtrlApiRoute.doOpenUrl, 'https://github.com/bojun1995/o-exif')
 }
 function onMinSizeWindowClk() {
-  sendSync(eleCtrlApiRoute.doMinSizeWindow)
+  sendSync(electronCtrlApiRoute.doMinSizeWindow)
 }
 function onMaxSizeWindowClk() {
-  sendSync(eleCtrlApiRoute.doMaxSizeWindow)
+  appStore.setIsMaximize(true)
+  sendSync(electronCtrlApiRoute.doMaxSizeWindow)
 }
 function onUnMaxSizeWindowClk() {
-  sendSync(eleCtrlApiRoute.doUnMaxSizeWindow)
+  appStore.setIsMaximize(false)
+  sendSync(electronCtrlApiRoute.doUnMaxSizeWindow)
 }
 function onHideWindowClk() {
-  sendSync(eleCtrlApiRoute.doHideWindow)
+  sendSync(electronCtrlApiRoute.doHideWindow)
 }
 </script>
 <script>

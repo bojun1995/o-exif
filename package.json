@@ -110,7 +110,6 @@
     "eslint": "^8.29.0",
     "eslint-config-egg": "^7.1.0",
     "eslint-plugin-prettier": "4.2.1",
-    "husky": "^8.0.2",
     "nodemon": "^2.0.16"
   },
   "dependencies": {

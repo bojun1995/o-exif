@@ -33,12 +33,12 @@ export const ipcApiRoute = {
   hello: 'controller.example.hello',
 }
 
-export const eleCtrlApiRoute = {
-  doOpenUrl: 'controller.eleCtrl.doOpenUrl',
-  doMinSizeWindow: 'controller.eleCtrl.doMinSizeWindow',
-  doMaxSizeWindow: 'controller.eleCtrl.doMaxSizeWindow',
-  doUnMaxSizeWindow: 'controller.eleCtrl.doUnMaxSizeWindow',
-  doHideWindow: 'controller.eleCtrl.doHideWindow',
+export const electronCtrlApiRoute = {
+  doOpenUrl: 'controller.electronCtrl.doOpenUrl',
+  doMinSizeWindow: 'controller.electronCtrl.doMinSizeWindow',
+  doMaxSizeWindow: 'controller.electronCtrl.doMaxSizeWindow',
+  doUnMaxSizeWindow: 'controller.electronCtrl.doUnMaxSizeWindow',
+  doHideWindow: 'controller.electronCtrl.doHideWindow',
 }
 
 /**

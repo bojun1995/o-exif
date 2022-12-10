@@ -8,3 +8,4 @@ data/
 .vscode/launch.json
 public/electron/
 yarn.lock
+public/
