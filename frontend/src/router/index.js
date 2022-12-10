@@ -3,8 +3,18 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const baseRoutes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('@/views/base/Home/index.vue'),
+    name: 'exportConfig',
+    component: () => import('@/views/biz/exportConfig/index.vue'),
+  },
+  {
+    path: '/exportPicture',
+    name: 'exportPicture',
+    component: () => import('@/views/biz/exportPicture/index.vue'),
+  },
+  {
+    path: '/appSetting',
+    name: 'appSetting',
+    component: () => import('@/views/biz/appSetting/index.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
