@@ -12,9 +12,12 @@ import { NConfigProvider } from 'naive-ui'
 
 const themeOverrides = ref({
   Menu: {
-    itemColorActive: '#E1F3F0',
-    itemColorActiveHover: '#E1F3F0',
-    itemTextColorActive: '#00AA95',
+    itemColorActive: 'rgb(243, 243, 245)',
+    itemColorActiveHover: 'rgb(243, 243, 245)',
+    itemIconColorActive: 'rgb(51, 54, 57)',
+    itemTextColorActive: 'rgb(51, 54, 57)',
+    itemIconColorActiveHover: 'rgb(51, 54, 57)',
+    itemTextColorActiveHover: 'rgb(51, 54, 57)',
   },
 })
 </script>

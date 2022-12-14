@@ -17,6 +17,11 @@ const baseRoutes = [
     component: () => import('@/views/biz/appSetting/index.vue'),
   },
   {
+    path: '/testExport',
+    name: 'testExport',
+    component: () => import('@/views/biz/testExport/index.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/',
   },

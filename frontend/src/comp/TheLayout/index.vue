@@ -1,9 +1,13 @@
 <template>
   <div class="the-layout">
     <Header></Header>
-    <div class="layout-content">
+    <div class="the-layout-content">
       <Aside></Aside>
-      <router-view></router-view>
+      <n-scrollbar>
+        <div class="router-box">
+          <router-view></router-view>
+        </div>
+      </n-scrollbar>
     </div>
   </div>
 </template>
@@ -26,9 +30,19 @@ export default {
   flex-direction: column;
 }
 
-.layout-content {
-  height: 100%;
+.the-layout-content {
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.router-box {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  padding: 10px;
+  overflow: auto;
 }
 </style>

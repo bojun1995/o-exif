@@ -1,5 +1,5 @@
 <template>
-  <div class="aside">
+  <div class="the-aside">
     <n-menu
       key="topMenu"
       :value="topMenuSelected"
@@ -54,10 +54,24 @@ const topMenuOptions = ref([
             name: 'exportPicture',
           },
         },
-        { default: () => '导出' }
+        { default: () => '导出图片' }
       ),
     key: 'exportPicture',
     icon: renderIcon('ri-image-line'),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: 'testExport',
+          },
+        },
+        { default: () => '测试导出' }
+      ),
+    key: 'testExport',
+    icon: renderIcon('ri-xbox-fill'),
   },
 ])
 const bottomOptions = ref([
@@ -88,9 +102,10 @@ function onBottomMenuSelectedChg(key) {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
-.aside {
+.the-aside {
   width: 200px;
   height: 100%;
+  // padding: 5px 0px 5px 0px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
