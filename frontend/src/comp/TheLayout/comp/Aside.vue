@@ -103,9 +103,8 @@ function onBottomMenuSelectedChg(key) {
 
 <style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
 .the-aside {
-  width: 200px;
+  width: 160px;
   height: 100%;
-  // padding: 5px 0px 5px 0px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;

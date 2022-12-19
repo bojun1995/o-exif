@@ -97,7 +97,9 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-right: 10px;
+  padding-right: 15px;
+  width: 100px;
+  justify-content: space-between;
 }
 
 .normal-btn {
