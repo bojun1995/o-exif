@@ -4,48 +4,84 @@
       <n-button type="primary">上传文件</n-button>
     </n-upload>
     <n-divider></n-divider>
-    <n-button type="info" @click="onCreateClk">create</n-button>
+    <n-button type="info" :loading="createLoading" @click="onCreateClk">create</n-button>
     <n-divider></n-divider>
-    <canvas ref="canvasBoxRef" class="export-box"> </canvas>
   </div>
 </template>
 
 <script setup>
 import Canvas2Image from '@/util/canvas2image'
+import ExifReader from 'exifreader'
 
 const fileList = ref([])
 function onFileListChg(event) {
   fileList.value = event.fileList
 }
 
-const canvasBoxRef = ref()
-
+const createLoading = ref(false)
 function onCreateClk() {
-  const bgCanvas = document.createElement('canvas')
-  const bgContext = bgCanvas.getContext('2d')
+  createLoading.value = true
+  nextTick(async () => {
+    const bgCanvas = document.createElement('canvas')
+    const bgContext = bgCanvas.getContext('2d')
 
-  // 关闭抗锯齿
-  bgContext.mozImageSmoothingEnabled = false
-  bgContext.webkitImageSmoothingEnabled = false
-  bgContext.msImageSmoothingEnabled = false
-  bgContext.imageSmoothingEnabled = false
+    // 关闭抗锯齿
+    bgContext.mozImageSmoothingEnabled = false
+    bgContext.webkitImageSmoothingEnabled = false
+    bgContext.msImageSmoothingEnabled = false
+    bgContext.imageSmoothingEnabled = false
 
-  const uploadImg = new Image()
-  uploadImg.src = URL.createObjectURL(fileList.value[0].file)
+    const uploadImg = new Image()
+    uploadImg.src = URL.createObjectURL(fileList.value[0].file)
+    const exifTags = await ExifReader.load(fileList.value[0].file)
 
-  uploadImg.onload = function () {
-    bgCanvas.width = uploadImg.width
-    bgCanvas.height = uploadImg.height * 1.1
+    uploadImg.onload = function () {
+      const exifHeight = Math.round(uploadImg.height / 10)
 
-    bgContext.drawImage(uploadImg, 0, 0)
+      bgCanvas.width = uploadImg.width
+      bgCanvas.height = uploadImg.height + exifHeight
 
-    const bgExportImg = Canvas2Image.convertToPNG(bgCanvas, bgCanvas.width, bgCanvas.height)
-    var a = document.createElement('a')
-    var event = new MouseEvent('click')
-    a.download = 'export.png'
-    a.href = bgExportImg.src
-    a.dispatchEvent(event)
-  }
+      // upload
+      bgContext.drawImage(uploadImg, 0, 0)
+
+      // exif
+      const exifCanvas = document.createElement('canvas')
+      const exifContext = exifCanvas.getContext('2d')
+      exifCanvas.width = uploadImg.width
+      exifCanvas.height = exifHeight
+
+      // 关闭抗锯齿
+      exifContext.mozImageSmoothingEnabled = false
+      exifContext.webkitImageSmoothingEnabled = false
+      exifContext.msImageSmoothingEnabled = false
+      exifContext.imageSmoothingEnabled = false
+
+      // 背景填充
+      exifContext.fillStyle = '#FFFFFF'
+      exifContext.fillRect(0, 0, bgCanvas.width, exifHeight)
+
+      // 填写exif
+      exifContext.fillStyle = '#282C34'
+      // exifContext.font = `${exifHeight}px kidoproject`
+      exifContext.font = `${exifHeight}px impact`
+      // exifContext.textBaseline = 'bottom'
+      exifContext.fillText(exifTags.Model.value[0], 0, exifHeight)
+
+      // 合并exif
+      bgContext.drawImage(exifCanvas, 0, uploadImg.height)
+
+      // export
+      // const bgExportImg = Canvas2Image.convertToJPEG(exifCanvas, exifCanvas.width, exifCanvas.height)
+      const bgExportImg = Canvas2Image.convertToJPEG(bgCanvas, bgCanvas.width, bgCanvas.height)
+      createLoading.value = false
+
+      var a = document.createElement('a')
+      var event = new MouseEvent('click')
+      a.download = 'export.jpg'
+      a.href = bgExportImg.src
+      a.dispatchEvent(event)
+    }
+  })
 }
 </script>
 <script>
