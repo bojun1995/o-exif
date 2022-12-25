@@ -4,12 +4,17 @@
       <n-button type="primary">上传文件</n-button>
     </n-upload>
     <n-divider></n-divider>
-    <n-button type="info" :loading="createLoading" @click="onCreateClk">create</n-button>
+    <!-- <n-button type="info" :loading="createLoading" @click="onCreateClk">create</n-button> -->
+    <n-button type="info" :loading="createLoading" @click="onExportClk">export</n-button>
     <n-divider></n-divider>
+    <div id="exifRef" :style="cp_exifStyle">
+      <span>{{ textMsg }}</span>
+    </div>
   </div>
 </template>
 
 <script setup>
+import Html2Canvas from 'html2canvas'
 import Canvas2Image from '@/util/canvas2image'
 import ExifReader from 'exifreader'
 
@@ -18,7 +23,45 @@ function onFileListChg(event) {
   fileList.value = event.fileList
 }
 
+const exifRef = ref()
+const textMsg = ref('123')
+const cp_exifStyle = ref({
+  height: '200px',
+  backgroundColor: '#282C34',
+})
+
 const createLoading = ref(false)
+
+function onExportClk() {
+  createLoading.value = true
+  nextTick(async () => {
+    const bgCanvas = document.createElement('canvas')
+    const bgContext = bgCanvas.getContext('2d')
+
+    // 关闭抗锯齿
+    bgContext.mozImageSmoothingEnabled = false
+    bgContext.webkitImageSmoothingEnabled = false
+    bgContext.msImageSmoothingEnabled = false
+    bgContext.imageSmoothingEnabled = false
+
+    const uploadImg = new Image()
+    uploadImg.src = URL.createObjectURL(fileList.value[0].file)
+    const exifTags = await ExifReader.load(fileList.value[0].file)
+
+    uploadImg.onload = function () {
+      const exifHeight = Math.round(uploadImg.height / 10)
+
+      bgCanvas.width = uploadImg.width
+      bgCanvas.height = uploadImg.height + exifHeight
+
+      // upload
+      bgContext.drawImage(uploadImg, 0, 0)
+
+      // html2canvas(exifRef.value).then(function (exifCanvas) {})
+    }
+  })
+}
+
 function onCreateClk() {
   createLoading.value = true
   nextTick(async () => {
@@ -90,8 +133,4 @@ export default {
 }
 </script>
 
-<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
-.export-box {
-  height: 200px;
-}
-</style>
+<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped></style>

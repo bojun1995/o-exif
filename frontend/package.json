@@ -11,6 +11,7 @@
   "dependencies": {
     "@vueuse/core": "^9.6.0",
     "exifreader": "^4.9.0",
+    "html2canvas": "^1.4.1",
     "naive-ui": "^2.34.2",
     "pinia": "^2.0.27",
     "remixicon": "^2.5.0",
