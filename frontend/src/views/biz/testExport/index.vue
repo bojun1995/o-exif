@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-box">
     <n-upload list-type="image" @change="onFileListChg">
       <n-button type="primary">上传文件</n-button>
     </n-upload>
@@ -7,14 +7,14 @@
     <!-- <n-button type="info" :loading="createLoading" @click="onCreateClk">create</n-button> -->
     <n-button type="info" :loading="createLoading" @click="onExportClk">export</n-button>
     <n-divider></n-divider>
-    <div id="exifRef" :style="cp_exifStyle">
+    <div ref="exifRef" :style="exifStyle">
       <span>{{ textMsg }}</span>
     </div>
   </div>
 </template>
 
 <script setup>
-import Html2Canvas from 'html2canvas'
+import html2canvas from 'html2canvas'
 import Canvas2Image from '@/util/canvas2image'
 import ExifReader from 'exifreader'
 
@@ -23,12 +23,25 @@ function onFileListChg(event) {
   fileList.value = event.fileList
 }
 
+const ratio = window.devicePixelRatio
+debugger
+
 const exifRef = ref()
 const textMsg = ref('123')
-const cp_exifStyle = ref({
-  height: '200px',
-  backgroundColor: '#282C34',
-})
+const exifStyle = ref({})
+exifStyle.value = getExifStyle()
+function getExifStyle(height = 100, width = 600) {
+  let ret = {
+    height: `${height}px`,
+    width: `${width}px`,
+    fontSize: `${height / 2}px`,
+    lineHeight: `${height}px`,
+    backgroundColor: '#E1F3F0',
+    // position: 'fixed',
+    // top: `-${height * 2}px`,
+  }
+  return ret
+}
 
 const createLoading = ref(false)
 
@@ -50,14 +63,28 @@ function onExportClk() {
 
     uploadImg.onload = function () {
       const exifHeight = Math.round(uploadImg.height / 10)
+      exifStyle.value = getExifStyle(exifHeight, uploadImg.width)
+      nextTick(() => {
+        bgCanvas.width = uploadImg.width
+        bgCanvas.height = uploadImg.height + exifHeight
 
-      bgCanvas.width = uploadImg.width
-      bgCanvas.height = uploadImg.height + exifHeight
+        // upload
+        bgContext.drawImage(uploadImg, 0, 0)
 
-      // upload
-      bgContext.drawImage(uploadImg, 0, 0)
+        html2canvas(exifRef.value).then(function (exifCanvas) {
+          bgContext.drawImage(exifCanvas, 0, uploadImg.height)
 
-      // html2canvas(exifRef.value).then(function (exifCanvas) {})
+          // export
+          const bgExportImg = Canvas2Image.convertToJPEG(bgCanvas, bgCanvas.width, bgCanvas.height)
+          createLoading.value = false
+
+          var a = document.createElement('a')
+          var event = new MouseEvent('click')
+          a.download = 'export.jpg'
+          a.href = bgExportImg.src
+          a.dispatchEvent(event)
+        })
+      })
     }
   })
 }
@@ -133,4 +160,8 @@ export default {
 }
 </script>
 
-<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped></style>
+<style lang="scss" rel="stylesheet/scss" type="text/scss" scoped>
+.page-box {
+  z-index: 1;
+}
+</style>
