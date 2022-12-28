@@ -8,7 +8,8 @@
     <n-button type="info" :loading="createLoading" @click="onExportClk">export</n-button>
     <n-divider></n-divider>
     <div ref="exifRef" :style="exifStyle">
-      <span>{{ textMsg }}</span>
+      <span>{{ getExifTagsByKey('Model') || '-' }}</span>
+      <span>{{ getExifTagsByKey('LensProfileName') || '-' }}</span>
     </div>
   </div>
 </template>
@@ -24,10 +25,17 @@ function onFileListChg(event) {
 }
 
 const ratio = window.devicePixelRatio
-debugger
 
 const exifRef = ref()
-const textMsg = ref('123')
+const exifTags = ref({})
+function getExifTagsByKey(key) {
+  let ret = '-'
+  if (exifTags.value[key]) {
+    ret = exifTags.value[key].description
+  }
+  return ret
+}
+
 const exifStyle = ref({})
 exifStyle.value = getExifStyle()
 function getExifStyle(height = 100, width = 600) {
@@ -37,6 +45,8 @@ function getExifStyle(height = 100, width = 600) {
     fontSize: `${height / 2}px`,
     lineHeight: `${height}px`,
     backgroundColor: '#E1F3F0',
+    display: 'flex',
+    justifyContent: 'space-between',
     // position: 'fixed',
     // top: `-${height * 2}px`,
   }
@@ -59,14 +69,15 @@ function onExportClk() {
 
     const uploadImg = new Image()
     uploadImg.src = URL.createObjectURL(fileList.value[0].file)
-    const exifTags = await ExifReader.load(fileList.value[0].file)
+    exifTags.value = await ExifReader.load(fileList.value[0].file)
 
     uploadImg.onload = function () {
-      const exifHeight = Math.round(uploadImg.height / 10)
-      exifStyle.value = getExifStyle(exifHeight, uploadImg.width)
+      const exifRealHeight = Math.round(uploadImg.height / ratio / 10)
+      const exifRealWidth = Math.round(uploadImg.width / ratio)
+      exifStyle.value = getExifStyle(exifRealHeight, exifRealWidth)
       nextTick(() => {
         bgCanvas.width = uploadImg.width
-        bgCanvas.height = uploadImg.height + exifHeight
+        bgCanvas.height = uploadImg.height + exifRealHeight
 
         // upload
         bgContext.drawImage(uploadImg, 0, 0)
